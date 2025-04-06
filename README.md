@@ -1,9 +1,6 @@
-# c-init
-C programming template
+# haikalxx
+Don't wanna use STL and RAII.
+haikalxx is a templated data structures library that uses arena allocation.
+haikalxx is based on [haikal](https://github.com/IbrahimHindawi/haikal) which is built with C and is C++ compatible.
 # how to run:
-- initalize `cl.exe` using `x64 Native Tools Command Prompt for VS 2019`
-- run `git submodule update --init --recursive`
-- run `scripts\build.bat -mb`
-- run `scripts\build.bat -mc`
-- run `scripts\build.bat -b`
-- run `scripts\build.bat -cr`
+Just include `inc` and `#include` whatever `h` file you want to use.

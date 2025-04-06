@@ -5,8 +5,8 @@
 template <typename T>
 struct Array {
     T *data;
-    i32 length;
-    i32 border;
+    u64 length;
+    u64 border;
 };
 
 template <typename T>
