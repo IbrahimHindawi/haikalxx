@@ -123,11 +123,11 @@ void arenaClear(Arena *arena) {
 }
 
 #define arenaRealloc(arena, type, new_count, old_ptr, old_count) \
-    arenaRealloc_(arena, sizeof(type) * new_count, old_ptr, sizeof(type) * old_count, alignof(type))
+    (type *)arenaRealloc_(arena, sizeof(type) * new_count, old_ptr, sizeof(type) * old_count, haikal_alignof(type))
 void *arenaRealloc_(Arena *arena, u64 new_alloc_size, void *old_ptr, u64 old_alloc_size, u64 align) {
     void *new_ptr = arenaPush(arena, new_alloc_size, align);
     memcpy(new_ptr, old_ptr, old_alloc_size);
-    memset(old_ptr, 0, old_alloc_size);
+    // memset(old_ptr, 0, old_alloc_size);
     return new_ptr;
 }
 
@@ -148,7 +148,7 @@ void arenaPrint(Arena *arena) {
 
 char *strAlloc(Arena *arena, char *input_str) {
     u64 input_str_len = strlen(input_str) + 1;
-    char *output_str = (char *)arenaPush(arena, sizeof(char) * input_str_len, alignof(char));
+    char *output_str = (char *)arenaPush(arena, sizeof(char) * input_str_len, haikal_alignof(char));
     memcpy(output_str, input_str, input_str_len);
     // output_str[0] = 'a';
     // for (i32 i = 0; i < input_str_len; ++i) {
@@ -162,7 +162,7 @@ void *strDealloc(Arena *arena, const char *input_str) {
     return arenaPop(arena, input_str_len);
 }
 
-#define arenaPushStruct(arena, type) arenaPush(arena, sizeof(type), alignof(type))
-#define arenaPushArray(arena, type, count) arenaPush(arena, sizeof(type) * count, alignof(type))
-#define arenaPopArray(arena, type, count) arenaPop(arena, sizeof(type) * count)
-#define arenaPushArrayZero(arena, type, count) arenaPushZero(arena, sizeof(type) * count, alignof(type))
+#define arenaPushStruct(arena, type) (type *)arenaPush(arena, sizeof(type), haikal_alignof(type))
+#define arenaPushArray(arena, type, count) (type *)arenaPush(arena, sizeof(type) * count, haikal_alignof(type))
+#define arenaPopArray(arena, type, count) (type *)arenaPop(arena, sizeof(type) * count)
+#define arenaPushArrayZero(arena, type, count) (type *)arenaPushZero(arena, sizeof(type) * count, haikal_alignof(type))

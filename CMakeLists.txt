@@ -5,7 +5,7 @@ project(haikalxx VERSION 1.0 LANGUAGES CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 23)
 
-# include_directories(extern/haikal/src/meta_arena/gen)
+include_directories(inc)
 # include_directories(extern/saha/src)
 add_executable(${PROJECT_NAME}
     src/main.cpp

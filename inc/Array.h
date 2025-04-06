@@ -16,7 +16,7 @@ Array<T> Array_reserve(Arena *arena, u64 length) {
         return array;
     }
     array.length = length;
-    array.data = (T *)arenaPushArray(arena, T, length);
+    array.data = arenaPushArray(arena, T, length);
     // array.data = malloc(sizeof(TYPE) * length);
     if (array.data == NULL) {
         printf("haikal::Memory Allocation Failure!\n");
@@ -62,7 +62,7 @@ T *Array_append(Arena *arena, Array<T> *array, T elem) {
     if (array->length == 0 && array->border == 0) { 
         array->length += 1;
         array->border += 1;
-        array->data = (T *)arenaPushArray(arena, T, array->border);
+        array->data = arenaPushArray(arena, T, array->border);
         // array->data = realloc(NULL, sizeof(TYPE) * array->border);
         array->data[array->length - 1] = elem;
         // char *cursor = (char *)array->data;

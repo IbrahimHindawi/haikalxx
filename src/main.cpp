@@ -33,28 +33,28 @@ void Array_test(Arena *arena) {
     }
     Array_destroy<vec3>(arena, &vectors);
 
-    Array<i8> arr = Array_reserve<i8>(arena, 32);
-    Array_append<i8>(arena, &arr, 127);
-    Array_append<i8>(arena, &arr, 23);
-    Array_append<i8>(arena, &arr, 11);
-    Array_append<i8>(arena, &arr, 8);
-    Array_append<i8>(arena, &arr, 127);
-    Array_append<i8>(arena, &arr, 23);
-    Array_append<i8>(arena, &arr, 11);
-    Array_append<i8>(arena, &arr, 8);
+    Array<u8> arr = Array_reserve<u8>(arena, 32);
+    Array_append<u8>(arena, &arr, 127);
+    Array_append<u8>(arena, &arr, 23);
+    Array_append<u8>(arena, &arr, 11);
+    Array_append<u8>(arena, &arr, 8);
+    Array_append<u8>(arena, &arr, 127);
+    Array_append<u8>(arena, &arr, 23);
+    Array_append<u8>(arena, &arr, 11);
+    Array_append<u8>(arena, &arr, 8);
     for (i32 i = 0; i < arr.length; ++i) { printf("arr[%d] = %d\n", i, arr.data[i]); }
     arr.length = 0;
     for (i32 i = 0; i < arr.length; ++i) { printf("arr[%d] = %d\n", i, arr.data[i]); }
-    Array_append<i8>(arena, &arr, 0xBA);
-    Array_append<i8>(arena, &arr, 0xBA);
-    Array_append<i8>(arena, &arr, 0xBA);
-    Array_append<i8>(arena, &arr, 0xBA);
-    Array_append<i8>(arena, &arr, 0xBA);
-    Array_append<i8>(arena, &arr, 0xBA);
-    Array_append<i8>(arena, &arr, 0xBA);
-    Array_append<i8>(arena, &arr, 0xBA);
+    Array_append<u8>(arena, &arr, 0xBA);
+    Array_append<u8>(arena, &arr, 0xBA);
+    Array_append<u8>(arena, &arr, 0xBA);
+    Array_append<u8>(arena, &arr, 0xBA);
+    Array_append<u8>(arena, &arr, 0xBA);
+    Array_append<u8>(arena, &arr, 0xBA);
+    Array_append<u8>(arena, &arr, 0xBA);
+    Array_append<u8>(arena, &arr, 0xBA);
     for (i32 i = 0; i < arr.length; ++i) { printf("arr[%d] = %d\n", i, arr.data[i]); }
-    Array_destroy<i8>(arena, &arr);
+    Array_destroy<u8>(arena, &arr);
     printf("\n");
 }
 
@@ -193,7 +193,6 @@ void List_test(Arena *arena) {
     }
     printf("\n");
 }
-
 
 auto main(i32 argc, char *argv[]) -> i32 {
     printf("haikalxx\n");

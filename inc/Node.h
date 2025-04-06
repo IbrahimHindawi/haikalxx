@@ -11,7 +11,7 @@ struct Node {
 template <typename T>
 Node<T> *Node_create(Arena *arena, T data) {
     // Node<T> *node = malloc(sizeof(Node<T>));
-    Node<T> *node = (Node<T> *)arenaPushStruct(arena, Node<T>);
+    Node<T> *node = arenaPushStruct(arena, Node<T>);
     if (node) {
         node->next = nullptr;
         node->data = data;

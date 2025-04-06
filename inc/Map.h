@@ -62,7 +62,7 @@ bool Map_expand(Arena *arena, Map<T>* hashmap) {
         return false;  // overflow (border would be too big)
     }
     // MapEntry_TYPE *new_entries = calloc(new_capacity, sizeof(MapEntry_TYPE));
-    MapEntry<T> *new_entries = (MapEntry<T> *)arenaPushArray(arena, MapEntry<T>, new_capacity);
+    MapEntry<T> *new_entries = arenaPushArray(arena, MapEntry<T>, new_capacity);
     if (!new_entries) {
         return false;
     }
@@ -86,7 +86,7 @@ bool Map_expand(Arena *arena, Map<T>* hashmap) {
 template <typename T>
 Map<T> *Map_create(Arena *arena) {
     // Map_TYPE *hashmap = malloc(sizeof(Map_TYPE));
-    Map<T> *hashmap = (Map<T> *)arenaPushArray(arena, Map<T>, 1);
+    Map<T> *hashmap = arenaPushArray(arena, Map<T>, 1);
     if (!hashmap) {
         return NULL;
     }
@@ -94,7 +94,7 @@ Map<T> *Map_create(Arena *arena) {
     hashmap->border = Map_TYPE_initial_capacity;
 
     // hashmap->entries = calloc(hashmap->border, sizeof(MapEntry_TYPE));
-    hashmap->entries = (MapEntry<T> *)arenaPushArray(arena, MapEntry<T>, hashmap->border);
+    hashmap->entries = arenaPushArray(arena, MapEntry<T>, hashmap->border);
     if (!hashmap->entries) {
         // free(hashmap);
         return NULL;
